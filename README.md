@@ -1,3 +1,9 @@
-## Project: Principles of Software Engineering
+## Final Project: Principles of Software Engineering
 
-### Web Application for San Diego Jamaat
+This site is built with
+
+- GatsbyJS
+- Firebase
+- ReactJS
+- React Bootstrap
+- Firebase (backend)

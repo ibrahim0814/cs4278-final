@@ -1,27 +1,31 @@
 import React, { useContext, useState } from "react"
-import { Nav, Navbar } from "react-bootstrap"
+import { Nav, Navbar, Button } from "react-bootstrap"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import logo from "../../static/sdj_logo.png"
 import { AuthContext } from "../provider/AuthContext"
 
 const Navigation = ({ pageName }) => {
-  const { authUser } = useContext(AuthContext)
+  const { authUser, signOut } = useContext(AuthContext)
   const defaultLinks = [
     { name: "Login", path: "/login" },
     { name: "Register", path: "/register" },
   ]
-  const loggedInLinks = [
-    { name: "Profile", path: "/auth/profile" },
-    { name: "Faiz-ul-Mawaid", path: "/auth/fmb" },
-  ]
+  const loggedInLinks = [{ name: "Profile", path: "/auth/profile" }]
 
   const getLinks = links => {
     return links.map((link, index) => {
       return (
-        <Nav.Link key={index} eventKey={link.name} as={Link} to={link.path}>
-          {link.name}
-        </Nav.Link>
+        <>
+          <Nav.Link key={index} eventKey={link.name} as={Link} to={link.path}>
+            {link.name}
+          </Nav.Link>
+          {authUser.valid ? (
+            <Button variant="info" type="submit" onClick={signOut}>
+              Sign Out
+            </Button>
+          ) : null}
+        </>
       )
     })
   }
